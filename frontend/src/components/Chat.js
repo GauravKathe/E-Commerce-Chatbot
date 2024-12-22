@@ -4,68 +4,130 @@ import styled from 'styled-components';
 const ChatContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 90vh;
   width: 100%;
-  max-width: 400px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   position: relative;
+  transition: all 0.3s ease;
+
+  @media (max-width: 768px) {
+    height: 100vh;
+    border-radius: 0;
+    padding: 1rem;
+  }
 `;
 
 const MessagesContainer = styled.div`
   flex-grow: 1;
   overflow-y: auto;
-  padding: 10px;
+  padding: 1rem;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 3px;
+  }
 `;
 
 const Message = styled.div`
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  background-color: ${props => props.isUser ? '#dcf8c6' : '#f0f0f0'};
+  margin-bottom: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  max-width: 80%;
+  line-height: 1.4;
+  animation: fadeIn 0.3s ease;
+  background-color: ${props => props.isUser ? '#007bff' : '#f8f9fa'};
+  color: ${props => props.isUser ? 'white' : '#333'};
   align-self: ${props => props.isUser ? 'flex-end' : 'flex-start'};
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 480px) {
+    max-width: 85%;
+  }
 `;
 
 const InputContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  gap: 0.8rem;
+  padding: 1rem;
+  border-top: 1px solid #eee;
 `;
 
 const Input = styled.input`
   flex-grow: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-right: 10px;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+  }
 `;
 
 const SendButton = styled.button`
-  padding: 10px 20px;
+  padding: 0.8rem 1.5rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: #007bff;
-  color: #fff;
+  color: white;
   cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+
+  &:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
 `;
 
 const LogoutButton = styled.button`
   position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 8px 15px;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.6rem 1rem;
   border: none;
-  border-radius: 5px;
-  background-color: #dc3545;
-  color: white;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+  color: #333;
   cursor: pointer;
   font-size: 0.9rem;
+  transition: all 0.2s ease;
 
   &:hover {
-    background-color: #c82333;
+    background-color: #e9ecef;
   }
 `;
 
